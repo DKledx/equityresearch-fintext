@@ -34,12 +34,12 @@ openai_api_key = os.getenv('OPENAI_API_KEY')
 sec_api_key = os.getenv('SEC_API_KEY')
 
 industry = "Computer Hardware Manufacturing, Semiconductors, GPUs"  # setting the industry to improve the prompt
-ticker_symbol = "NVDA"  # The ticker symbol of the company. US stock only.
+ticker_symbol = "GOOGL"  # The ticker symbol of the company. US stock only.
 sec_api_key = os.environ.get("SEC_API_KEY")  # Your SEC API key, get it from https://sec-api.io/ for free.
 
 #llm = "gpt-4-turbo-preview"
-#llm = "llama2"
-llm = "openchat"
+llm = "llama2"
+# llm = "openchat"
 
 # embd = OpenAIEmbeddings()
 # create the open-source embedding function

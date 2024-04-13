@@ -22,7 +22,7 @@ load_dotenv()
 openai_api_key = os.getenv('OPENAI_API_KEY')
 
 
-def correct_date(yr, dt):
+def correct_date(yr, dt): 
     """Some transcripts have incorrect date, correcting it
 
     Args:
