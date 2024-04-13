@@ -34,10 +34,10 @@ openai_api_key = os.getenv('OPENAI_API_KEY')
 sec_api_key = os.getenv('SEC_API_KEY')
 
 industry = "Computer Hardware Manufacturing, Semiconductors, GPUs"  # setting the industry to improve the prompt
-ticker_symbol = "GOOGL"  # The ticker symbol of the company. US stock only.
+ticker_symbol = "MSFT"  # The ticker symbol of the company. US stock only.
 sec_api_key = os.environ.get("SEC_API_KEY")  # Your SEC API key, get it from https://sec-api.io/ for free.
 
-#llm = "gpt-4-turbo-preview"
+#llm = "gpt"
 llm = "llama2"
 # llm = "openchat"
 
@@ -147,6 +147,15 @@ class ReportAnalysis:
             """
 
     def get_stock_performance(self):
+        """
+        Fetches and plots the stock performance of a given ticker symbol against the S&P 500 index.
+
+        Returns:
+            str: The file path of the saved plot.
+
+        Raises:
+            None
+        """
         def fetch_stock_data(ticker, period="1y"):
             stock = yf.Ticker(ticker)
             hist = stock.history(period=period)
@@ -188,6 +197,12 @@ class ReportAnalysis:
         return plot_path
 
     def get_sec_report_address(self):
+        """
+        Retrieves the SEC report address for a specific company's latest 10-K filing.
+
+        Returns:
+            str: The URL address of the latest 10-K filing.
+        """
         address_json = f"{self.project_dir}/sec_report_address.json"
         if not os.path.exists(address_json):
             endpoint = f"https://api.sec-api.io?token={sec_api_key}"
@@ -224,6 +239,22 @@ class ReportAnalysis:
         return latest_10k_url['linkToFilingDetails']
 
     def get_key_data(self):
+        """
+        Fetches key data for a given stock ticker symbol.
+
+        Returns:
+            dict: A dictionary containing the following key data:
+                - "6m avg daily val ({currency}mn)": The average daily trading volume for the past 6 months in millions.
+                - "Closing Price ({currency})": The closing price of the stock.
+                - "Market Cap ({currency}mn)": The market capitalization of the stock in millions.
+                - "52 Week Price Range ({currency})": The 52-week price range of the stock.
+                - "BVPS ({currency})": The book value per share of the stock.
+        """
+        # Function code here
+    def get_key_data(self):
+        """
+        Fetches key data for a given stock ticker symbol.
+        """
         # Fetch historical market data for the past 6 months
         hist = self.stock.history(period="6mo")
 
